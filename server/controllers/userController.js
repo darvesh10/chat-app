@@ -23,9 +23,11 @@ export const signup = async (req, res) => {
             bio,
           });
           const token = generateToken(newUser._id);
+          res.json({sucess: true, userData: newUser, token, message: "User created successfully"});
         
     } catch (error) {
-        
+        console.log(error.message);
+        res.status(500).json({ error: "Internal server error" });
     }
 }
 
