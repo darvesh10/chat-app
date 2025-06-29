@@ -1,31 +1,29 @@
  import mongoose from "mongoose";
 
  const userSchema = new mongoose.Schema({
-    fullName:{
-        type: String,
+    senderId:{
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "User",
+        required: true,  
+    },
+    receiverId:{
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "User",
         required: true,
-        unique: true,
+        text : {type: String,},
+        image: {
+            type: String,
+        },
+        seen: {
+            type: Boolean,
+            default: false,
+        },
     },
-    email:{
-      type: String,
-      required: true,
-      unique: true,
-    },
-    password:{
-        type: String,
-        required: true,
-        minlength: 6,
-    },
-    profilePic:{
-        type: String,
-        default: ""
-    },
-    bio:{
-        type: String,
-    },
+   
+  
  },{timestamps: true});
 
 
 
- const User = mongoose.model("User", userSchema);
- export default User;
+ const Message = mongoose.model("Message", userSchema);
+ export default Message;
