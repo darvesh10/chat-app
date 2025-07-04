@@ -1,20 +1,27 @@
-import React from 'react'
-import { Route , Routes } from 'react-router-dom'
-import HomePage from './pages/HomePage'
-import LoginPage from './pages/LoginPage'
-import ProfilePage from './pages/ProfilePage'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Signup from './pages/Signup.jsx';
+import Login from './pages/Login';
+import Details from './pages/Details';
+import Home from './pages/Home';
+import Chat from './pages/Chat';
+import NotFound from './pages/NotFound';
 
-const App = () => {
+function App() {
   return (
-    <div className="bg-[url('/src/assets/bgImage.svg')] bg-contain">
+    
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/details" element={<Details />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/chat/:id" element={<Chat />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
-    </div>
-  )
+    
+  );
 }
 
-export default App
+export default App;
 
+
+console.log("App component rendered");
