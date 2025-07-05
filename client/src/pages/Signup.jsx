@@ -12,7 +12,7 @@ const Signup = () => {
       </header>
 
       <main className="flex flex-col items-center mt-10 space-y-12">
-        <AuthForm />
+      <AuthForm type="signup" />
         <FeatureTeaser />
       </main>
 

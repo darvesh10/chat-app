@@ -1,13 +1,25 @@
-import React from 'react'
+import React from 'react';
+import AuthForm from '../components/AuthForm';
+import FeatureTeaser from '../components/FeatureTeaser';
+import Footer from '../components/Footer';
 
-const LoginPage = () => {
+const Login = () => {
   return (
-    <div>
-      <h1>Login Page</h1>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, quod quisquam possimus perferendis quae nulla ea voluptatibus minus? Impedit velit minus perspiciatis temporibus hic delectus fugiat quis id dicta mollitia?</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio sed, voluptatem error, incidunt vitae soluta inventore rem placeat neque molestias saepe. Sapiente, similique? Explicabo reprehenderit fuga sunt, culpa a facilis.</p>
-    </div>
-  )
-}
+    <div className="min-h-screen flex flex-col justify-between bg-gradient-to-br from-blue-100 to-purple-200 font-sans">
+      <header className="text-center mt-8">
+        <h1 className="text-5xl font-bold text-indigo-800">PersonaChat AI</h1>
+        <p className="text-lg text-gray-600 mt-2">Welcome Back! Login to Chat Smartly</p>
+      </header>
 
-export default LoginPage
+      <main className="flex flex-col items-center mt-10 space-y-12">
+        <AuthForm type="login" />
+        <FeatureTeaser />
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default Login;
+
