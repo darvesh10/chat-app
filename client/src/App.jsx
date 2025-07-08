@@ -5,6 +5,7 @@ import Details from './pages/Details';
 import Home from './pages/Home';
 import Chat from './pages/Chat';
 import NotFound from './pages/NotFound';
+import Magic from './pages/Magic.jsx';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/chat/:id" element={<Chat />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/magic" element={<Magic />} />
       </Routes>
     
   );
