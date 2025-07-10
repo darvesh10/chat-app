@@ -1,24 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import GroupChatModal from '../components/GroupChatModal';
 import { useNavigate } from 'react-router-dom';
 import avatarIcon from '../assets/avatar_icon.png';
 
+// Fixed Images for Dummy Chats ✅
 const dummyChats = [
-  { name: 'John' },
-  { name: 'Emma' },
-  { name: 'Group: Friends' },
-  { name: 'Work Chat' },
-  { name: 'Besties' },
+  { name: 'John', image: 'https://i.pravatar.cc/100?img=1' },
+  { name: 'Emma', image: 'https://i.pravatar.cc/100?img=2' },
+  { name: 'Group: Friends', image: 'https://i.pravatar.cc/100?img=3' },
+  { name: 'Work Chat', image: 'https://i.pravatar.cc/100?img=4' },
+  { name: 'Besties', image: 'https://i.pravatar.cc/100?img=5' },
 ];
 
 const Home = () => {
   const [search, setSearch] = useState('');
   const [isGroupModalOpen, setIsGroupModalOpen] = useState(false);
   const [groups, setGroups] = useState([]);
+  const [profilePic, setProfilePic] = useState(localStorage.getItem('profilePic') || avatarIcon);
+  const [bio, setBio] = useState(localStorage.getItem('bio') || 'Hey there! I am using Chat App');
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedPic = localStorage.getItem('profilePic');
+    const storedBio = localStorage.getItem('bio');
+    if (storedPic) setProfilePic(storedPic);
+    if (storedBio) setBio(storedBio);
+  }, []);
 
   const filteredChats = dummyChats.filter(chat =>
     chat.name.toLowerCase().includes(search.toLowerCase())
@@ -32,6 +42,10 @@ const Home = () => {
     setGroups(prev => [...prev, newGroup]);
   };
 
+  const handleSettingsClick = () => {
+    navigate('/settings');
+  };
+
   return (
     <div className="min-h-screen flex flex-col justify-between bg-gradient-to-br from-blue-100 to-purple-200 font-sans">
       <Navbar />
@@ -39,6 +53,22 @@ const Home = () => {
       <main className="flex flex-1 flex-col md:flex-row gap-6 p-6">
 
         <div className="bg-white/90 p-6 rounded-2xl shadow-lg w-full md:w-1/3">
+
+          {/* ✅ Apni Profile Pic & Bio Section */}
+          <div className="flex items-center justify-center mb-4">
+            <img src={profilePic} alt="My Avatar" className="w-10 h-10 rounded-full border mr-3" />
+            <div>
+              <p className="font-semibold text-gray-800">Me</p>
+              <p className="text-sm text-gray-500 truncate">{bio}</p>
+            </div>
+          </div>
+
+          <button
+            onClick={handleSettingsClick}
+            className="mb-4 w-full bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-600"
+          >
+            ⚙️ Profile Settings
+          </button>
 
           <button
             onClick={() => setIsGroupModalOpen(true)}
@@ -58,14 +88,15 @@ const Home = () => {
           <h2 className="font-semibold text-indigo-700 mb-3">Your Chats:</h2>
 
           <ul className="space-y-2">
+            {/* ✅ Fixed images for users */}
             {filteredChats.map((chat, idx) => (
               <li
                 key={idx}
                 className="flex items-center p-3 rounded-lg hover:bg-gray-100 cursor-pointer shadow-sm"
-                onClick={() => navigate(`/chat/${idx}`, { state: { name: chat.name, image: avatarIcon } })}
+                onClick={() => navigate(`/chat/${idx}`, { state: { name: chat.name, image: chat.image } })}
               >
                 <img
-                  src={avatarIcon}
+                  src={chat.image}
                   alt="Avatar"
                   className="w-8 h-8 rounded-full object-cover mr-3 border"
                 />
@@ -73,6 +104,7 @@ const Home = () => {
               </li>
             ))}
 
+            {/* ✅ Group images */}
             {groups.map((group, idx) => (
               <li
                 key={`group-${idx}`}
@@ -80,7 +112,7 @@ const Home = () => {
                 onClick={() => navigate(`/chat/${group.name}`, { state: { name: group.name, image: group.image || avatarIcon } })}
               >
                 <img
-                  src={group.image ? group.image : avatarIcon}
+                  src={group.image || avatarIcon}
                   alt="Group"
                   className="w-8 h-8 rounded-full object-cover mr-3 border"
                 />
@@ -120,6 +152,8 @@ const Home = () => {
 };
 
 export default Home;
+
+
 
 
 

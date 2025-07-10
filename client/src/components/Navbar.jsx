@@ -16,6 +16,8 @@ const Navbar = () => {
         <button onClick={() => alert('Coming Soon!')}>Group Chat</button>
         <button onClick={() => alert('Coming Soon!')}>How to Use</button>
         <button onClick={handleLogout} className="text-red-500">Logout</button>
+     
+
       </div>
     </nav>
   );
