@@ -1,29 +1,11 @@
- import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
- const userSchema = new mongoose.Schema({
-    senderId:{
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: "User",
-        required: true,  
-    },
-    receiverId:{
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: "User",
-        required: true,
-        text : {type: String,},
-        image: {
-            type: String,
-        },
-        seen: {
-            type: Boolean,
-            default: false,
-        },
-    },
-   
-  
- },{timestamps: true});
+const userSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  profilePic: { type: String, default: '' },
+  bio: { type: String, default: 'Hey there! I am using Chat App' },
+}, { timestamps: true });
 
-
-
- const Message = mongoose.model("Message", userSchema);
- export default Message;
+export default mongoose.model('User', userSchema);

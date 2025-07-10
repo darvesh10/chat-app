@@ -9,7 +9,7 @@ const ProfileCard = ({ profilePic, setProfilePic }) => {
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setPreview(imageUrl);
-      setProfilePic(imageUrl);ja
+      setProfilePic(imageUrl);
     }
   };
 
