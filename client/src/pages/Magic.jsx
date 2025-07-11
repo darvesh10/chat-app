@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
+import { Send, ArrowLeft, Sparkles, Heart, Users, GraduationCap, FolderHeart as UserHeart, Brain } from 'lucide-react';
 
 const personalities = [
   { 
     name: 'Mother', 
     emoji: '👩', 
+    icon: Heart,
+    color: 'from-pink-500 to-rose-500',
+    bgColor: 'bg-pink-50',
+    description: 'Caring, nurturing, and always worried about you',
     replies: {
       greetings: ['Beta, kaise ho?', 'Mera baccha kaisa hai?', 'Kya haal hai beta?', 'Sab theek hai na?'],
       food: ['Khana khaya na?', 'Proper khana kha rahe ho?', 'Ghar ka khana yaad aata hai?', 'Kuch achha cook karo'],
@@ -16,6 +21,10 @@ const personalities = [
   { 
     name: 'Friend', 
     emoji: '🧑‍🤝‍🧑', 
+    icon: Users,
+    color: 'from-blue-500 to-cyan-500',
+    bgColor: 'bg-blue-50',
+    description: 'Your buddy who\'s always up for fun',
     replies: {
       greetings: ['Brooo kya scene hai?', 'Yaar kya haal hai?', 'Kya chal raha hai bhai?', 'Kaise ho bhai?'],
       fun: ['Chal party karte hain!', 'Let\'s hang out!', 'Movie dekhne chalte hain', 'Game khelenge?'],
@@ -28,6 +37,10 @@ const personalities = [
   { 
     name: 'Teacher', 
     emoji: '👨‍🏫', 
+    icon: GraduationCap,
+    color: 'from-green-500 to-emerald-500',
+    bgColor: 'bg-green-50',
+    description: 'Wise, patient, and always encouraging',
     replies: {
       greetings: ['Good morning beta', 'Kaise ho mere student?', 'Padhai kaisi chal rahi hai?', 'Kya haal hai studies ka?'],
       motivation: ['Focus on your studies', 'Hard work pays off', 'Keep learning consistently', 'Success zaroor milegi'],
@@ -40,6 +53,10 @@ const personalities = [
   { 
     name: 'Girlfriend', 
     emoji: '💕', 
+    icon: UserHeart,
+    color: 'from-purple-500 to-pink-500',
+    bgColor: 'bg-purple-50',
+    description: 'Sweet, loving, and always there for you',
     replies: {
       greetings: ['Hey love ❤️', 'Good morning 💖', 'Hi baby 😘', 'Kaise ho mere pyaar?'],
       love: ['I love you so much 💕', 'You mean everything to me', 'Tum meri zindagi ho', 'Can\'t live without you ❤️'],
@@ -52,6 +69,10 @@ const personalities = [
   { 
     name: 'Boyfriend', 
     emoji: '💙', 
+    icon: UserHeart,
+    color: 'from-indigo-500 to-blue-500',
+    bgColor: 'bg-indigo-50',
+    description: 'Supportive, romantic, and your biggest fan',
     replies: {
       greetings: ['Hey cutie 💙', 'Good morning beautiful', 'Hi gorgeous 😍', 'Kaise ho meri jaan?'],
       love: ['I love you baby 💙', 'Tum meri everything ho', 'You complete me', 'Forever yours 💫'],
@@ -64,6 +85,10 @@ const personalities = [
   { 
     name: 'Mentor', 
     emoji: '🧑‍💼', 
+    icon: Brain,
+    color: 'from-orange-500 to-amber-500',
+    bgColor: 'bg-orange-50',
+    description: 'Experienced, wise, and focused on your growth',
     replies: {
       greetings: ['Hello there!', 'Good to see you', 'Kaise chal raha hai sab?', 'Progress kaisi hai?'],
       motivation: ['Stay consistent', 'Your growth matters', 'Believe in yourself', 'Success is a journey'],
@@ -83,7 +108,6 @@ const Magic = () => {
   const getContextualReply = (userMessage, personality) => {
     const message = userMessage.toLowerCase();
     
-    // Check for specific keywords and respond accordingly
     if (message.includes('hi') || message.includes('hello') || message.includes('hey')) {
       return personality.replies.greetings[Math.floor(Math.random() * personality.replies.greetings.length)];
     }
@@ -98,93 +122,20 @@ const Magic = () => {
       if (message.includes('love') || message.includes('pyaar') || message.includes('miss')) {
         return personality.replies.love[Math.floor(Math.random() * personality.replies.love.length)];
       }
-      if (message.includes('advice') || message.includes('help') || message.includes('problem')) {
-        return personality.replies.advice[Math.floor(Math.random() * personality.replies.advice.length)];
-      }
     }
-    
-    if (personality.name === 'Friend') {
-      if (message.includes('party') || message.includes('fun') || message.includes('hang')) {
-        return personality.replies.fun[Math.floor(Math.random() * personality.replies.fun.length)];
-      }
-      if (message.includes('sad') || message.includes('problem') || message.includes('help')) {
-        return personality.replies.support[Math.floor(Math.random() * personality.replies.support.length)];
-      }
-      if (message.includes('funny') || message.includes('joke') || message.includes('haha')) {
-        return personality.replies.jokes[Math.floor(Math.random() * personality.replies.jokes.length)];
-      }
-      if (message.includes('miss') || message.includes('long time')) {
-        return personality.replies.missing[Math.floor(Math.random() * personality.replies.missing.length)];
-      }
-    }
-    
-    if (personality.name === 'Teacher') {
-      if (message.includes('study') || message.includes('padhai') || message.includes('exam')) {
-        return personality.replies.motivation[Math.floor(Math.random() * personality.replies.motivation.length)];
-      }
-      if (message.includes('doubt') || message.includes('help') || message.includes('concept')) {
-        return personality.replies.guidance[Math.floor(Math.random() * personality.replies.guidance.length)];
-      }
-      if (message.includes('good') || message.includes('great') || message.includes('excellent')) {
-        return personality.replies.appreciation[Math.floor(Math.random() * personality.replies.appreciation.length)];
-      }
-    }
-    
-    if (personality.name === 'Girlfriend') {
-      if (message.includes('love') || message.includes('pyaar')) {
-        return personality.replies.love[Math.floor(Math.random() * personality.replies.love.length)];
-      }
-      if (message.includes('miss') || message.includes('meet') || message.includes('milna')) {
-        return personality.replies.missing[Math.floor(Math.random() * personality.replies.missing.length)];
-      }
-      if (message.includes('cute') || message.includes('sweet') || message.includes('beautiful')) {
-        return personality.replies.cute[Math.floor(Math.random() * personality.replies.cute.length)];
-      }
-      if (message.includes('health') || message.includes('care') || message.includes('khana')) {
-        return personality.replies.care[Math.floor(Math.random() * personality.replies.care.length)];
-      }
-    }
-    
-    if (personality.name === 'Boyfriend') {
-      if (message.includes('love') || message.includes('pyaar')) {
-        return personality.replies.love[Math.floor(Math.random() * personality.replies.love.length)];
-      }
-      if (message.includes('problem') || message.includes('sad') || message.includes('help')) {
-        return personality.replies.support[Math.floor(Math.random() * personality.replies.support.length)];
-      }
-      if (message.includes('beautiful') || message.includes('pretty') || message.includes('gorgeous')) {
-        return personality.replies.compliments[Math.floor(Math.random() * personality.replies.compliments.length)];
-      }
-      if (message.includes('date') || message.includes('movie') || message.includes('fun')) {
-        return personality.replies.fun[Math.floor(Math.random() * personality.replies.fun.length)];
-      }
-    }
-    
-    if (personality.name === 'Mentor') {
-      if (message.includes('career') || message.includes('job') || message.includes('work')) {
-        return personality.replies.career[Math.floor(Math.random() * personality.replies.career.length)];
-      }
-      if (message.includes('advice') || message.includes('help') || message.includes('guidance')) {
-        return personality.replies.guidance[Math.floor(Math.random() * personality.replies.guidance.length)];
-      }
-      if (message.includes('motivation') || message.includes('inspire')) {
-        return personality.replies.motivation[Math.floor(Math.random() * personality.replies.motivation.length)];
-      }
-      if (message.includes('life') || message.includes('wisdom')) {
-        return personality.replies.wisdom[Math.floor(Math.random() * personality.replies.wisdom.length)];
-      }
-    }
-    
-    // Default to general responses if no specific context found
+
     return personality.replies.general[Math.floor(Math.random() * personality.replies.general.length)];
   };
 
   const handleSend = () => {
     if (!input.trim()) return;
 
-    const newMessages = [...messages, { from: 'You', text: input }];
+    const newMessages = [...messages, { from: 'You', text: input, timestamp: new Date() }];
     const contextualReply = getContextualReply(input, selected);
-    newMessages.push({ from: selected.name, text: contextualReply });
+
+    setTimeout(() => {
+      setMessages([...newMessages, { from: selected.name, text: contextualReply, timestamp: new Date() }]);
+    }, 1000);
 
     setMessages(newMessages);
     setInput('');
@@ -195,97 +146,125 @@ const Magic = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-gradient-to-br from-blue-100 to-purple-200 font-sans">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-100">
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%239C92AC%22%20fill-opacity%3D%220.03%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221.5%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
+      
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-6xl mx-auto px-4 py-3">
-          <h1 className="text-xl font-bold text-indigo-700">Magic Chat</h1>
+      <div className="relative z-10 bg-white/80 backdrop-blur-sm shadow-sm border-b">
+        <div className="max-w-6xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <Sparkles className="w-8 h-8 text-indigo-600" />
+              <h1 className="text-xl md:text-2xl font-bold gradient-text">Magic Chat</h1>
+            </div>
+            {selected && (
+              <button
+                onClick={() => setSelected(null)}
+                className="flex items-center space-x-2 text-indigo-600 hover:text-indigo-800 transition-colors"
+              >
+                <ArrowLeft className="w-5 h-5" />
+                <span className="hidden md:block">Back to Personalities</span>
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
-      <main className="flex-1 flex flex-col items-center p-4 md:p-6">
-        <h2 className="text-2xl md:text-3xl font-bold text-indigo-700 mb-6 text-center">
-          Talk Freely — You're Never Alone 🌈
-        </h2>
-
+      <main className="relative z-10 p-4 md:p-6">
         {!selected ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl">
-            {personalities.map((p, idx) => (
-              <button
-                key={idx}
-                onClick={() => { setSelected(p); setMessages([]); }}
-                className="bg-white rounded-2xl shadow-lg p-4 md:p-6 text-center hover:scale-105 transition transform hover:shadow-xl"
-              >
-                <div className="text-3xl md:text-4xl mb-3">{p.emoji}</div>
-                <h3 className="font-semibold text-indigo-600 text-sm md:text-base">{p.name}</h3>
-              </button>
-            ))}
-          </div>
-        ) : (
-          <div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg overflow-hidden">
-            <div className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white p-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl md:text-3xl">{selected.emoji}</span>
-                  <h3 className="font-semibold text-lg">{selected.name}</h3>
-                </div>
-                <button 
-                  onClick={() => setSelected(null)} 
-                  className="text-white hover:text-gray-200 px-3 py-1 rounded-md hover:bg-white hover:bg-opacity-20"
-                >
-                  🔙 Change
-                </button>
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-8 md:mb-12 fade-in">
+              <div className="floating-animation">
+                <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-4">
+                  Talk Freely — You're Never Alone 🌈
+                </h2>
               </div>
+              <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto">
+                Choose a personality and experience natural, meaningful conversations
+              </p>
             </div>
 
-            <div className="p-4">
-              <div className="h-80 md:h-96 overflow-y-auto border rounded-lg p-4 mb-4 space-y-3 bg-gray-50">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {personalities.map((p, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => { setSelected(p); setMessages([]); }}
+                  className="glass-effect rounded-3xl p-6 md:p-8 text-center hover-lift cursor-pointer group slide-up"
+                  style={{ animationDelay: `${idx * 0.1}s` }}
+                >
+                  <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br ${p.color} flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg`}>
+                    <p.icon className="w-8 h-8 md:w-10 md:h-10 text-white" />
+                  </div>
+                  <h3 className="font-bold text-lg md:text-xl text-gray-800 mb-2">{p.name}</h3>
+                  <p className="text-gray-600 text-sm md:text-base">{p.description}</p>
+                  <div className="mt-4 text-2xl md:text-3xl">{p.emoji}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="max-w-4xl mx-auto">
+            <div className="glass-effect rounded-3xl shadow-2xl overflow-hidden">
+              <div className={`bg-gradient-to-r ${selected.color} text-white p-4 md:p-6`}>
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 flex items-center justify-center">
+                    <selected.icon className="w-6 h-6 md:w-8 md:h-8" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg md:text-xl">{selected.name}</h3>
+                    <p className="text-white/80 text-sm md:text-base">{selected.description}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="h-80 md:h-96 overflow-y-auto p-4 md:p-6 space-y-4 bg-gray-50">
                 {messages.length === 0 && (
-                  <div className="text-center text-gray-500 mt-8">
-                    <p>Start a conversation with {selected.name} {selected.emoji}</p>
+                  <div className="text-center py-8 md:py-12">
+                    <div className="text-6xl md:text-8xl mb-4">{selected.emoji}</div>
+                    <p className="text-gray-500 text-lg md:text-xl">
+                      Start a conversation with {selected.name}
+                    </p>
                   </div>
                 )}
                 {messages.map((msg, idx) => (
                   <div key={idx} className={`flex ${msg.from === 'You' ? 'justify-end' : 'justify-start'}`}>
-                    <div className={`max-w-xs px-4 py-2 rounded-lg shadow-sm ${
+                    <div className={`max-w-xs md:max-w-md px-4 py-3 rounded-2xl shadow-sm ${
                       msg.from === 'You' 
-                        ? 'bg-indigo-500 text-white rounded-br-none' 
-                        : 'bg-white text-gray-800 rounded-bl-none'
+                        ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white' 
+                        : 'bg-white text-gray-800 border'
                     }`}>
-                      <p className="text-sm break-words">{msg.text}</p>
+                      <p className="text-sm md:text-base break-words">{msg.text}</p>
+                      <p className="text-xs mt-1 opacity-60">
+                        {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </p>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="flex items-center gap-2 bg-gray-50 p-3 rounded-lg">
-                <button className="text-xl hover:bg-gray-200 rounded-full p-1">😊</button>
-                <input
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                  placeholder="Type a message..."
-                  className="flex-1 border rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white"
-                />
-                <button 
-                  onClick={handleSend} 
-                  className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors"
-                >
-                  ⬆️
-                </button>
+              <div className="p-4 md:p-6 bg-white border-t">
+                <div className="flex items-center space-x-3">
+                  <input
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyPress={handleKeyPress}
+                    placeholder="Type a message..."
+                    className="flex-1 border border-gray-300 rounded-2xl px-4 py-3 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300"
+                  />
+                  <button 
+                    onClick={handleSend}
+                    disabled={!input.trim()}
+                    className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-3 rounded-2xl hover:from-indigo-600 hover:to-purple-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:scale-105"
+                  >
+                    <Send className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         )}
       </main>
-
-      {/* Footer */}
-      <div className="bg-white border-t">
-        <div className="max-w-6xl mx-auto px-4 py-3 text-center text-gray-600 text-sm">
-          Magic Chat - Talk to different personalities
-        </div>
-      </div>
     </div>
   );
 };
